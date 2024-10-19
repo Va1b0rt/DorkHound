@@ -1,0 +1,363 @@
+site:.ru inurl:"wp-content/uploads/private"
+site:.ru inurl:"wp-contentpluginsall-in-one-seo-pack"
+site:.ru inurl:"wp-download.php?dl_id="
+site:.ru inurl:"wp-license.php?file=../..//wp-config"
+site:.ru inurl:"wp-security-audit-log" ext:log
+site:.ru inurl:/wp-admin/admin-ajax.php?action=revslider_ajax_action
+site:.ru inurl:/wp-admin/admin.php intitle:"Log In"
+site:.ru inurl:/wp-admin/includes/plugin-install.php
+site:.ru inurl:/wp-admin/post.php?post=
+site:.ru inurl:/wp-content/ai1wm-backups + wpress
+site:.ru inurl:/wp-content/plugins/fgallery/
+site:.ru inurl:/wp-content/plugins/inboundio-marketing/
+site:.ru inurl:/wp-content/plugins/seo-pressor/classes/
+site:.ru inurl:/wp-content/plugins/video-synchro-pdf
+site:.ru inurl:/wp-content/plugins/wpSS/
+site:.ru inurl:/wp-content/themes/tigin/
+site:.ru inurl:/wp-content/themes/xunjin/
+site:.ru inurl:/wp-content/uploads/ filetype:sql
+site:.ru inurl:/wp-content/uploads/ninja-forms/ intitle:"index of"
+site:.ru inurl:/wp-content/uploads/wp-backup-plus/
+site:.ru inurl:/wp-content/w3tc/dbcache/
+site:.ru inurl:/wp-content/wpbackitup_backups
+site:.ru inurl:/wp-includes/certificates/
+site:.ru inurl:/wp-json/wp/v2/users/ "id":1,"name":" -wordpress.stackexchange.com -stackoverflow.com
+site:.ru inurl:/wp/ + "Login"
+site:.ru inurl:/wp/wp-admin/
+site:.ru inurl:log -intext:log ext:log inurl:wp-
+site:.ru inurl:wp-admin/ intext:css/
+site:.ru inurl:wp-admin/admin-ajax.php inurl:wp-config.php
+site:.ru inurl:wp-config -intext:wp-config "'DB_PASSWORD'"
+site:.ru inurl:wp-config-backup.txt
+site:.ru inurl:wp-config.bak
+site:.ru inurl:wp-config.php intext:DB_PASSWORD -stackoverflow -wpbeginner
+site:.ru inurl:wp-content intext:backup-db
+site:.ru inurl:wp-content/debug.log
+site:.ru inurl:wp-content/plugins/age-verification/age-verification.php
+site:.ru inurl:wp-content/uploads filetype:xls | filetype:xlsx password
+site:.ru inurl:wp-content/uploads/dump.sql
+site:.ru inurl:wp-links-opml.php
+site:.ru inurl:wp-login.php +Register Username Password "remember me" -echo -trac -footwear
+site:.ru inurl:wp-login.php Register Username Password -echo
+site:.ru inurl:wp-login.php?action=register
+site:.ru inurl:wp-mail.php  + "There doesn't seem to be any new mail."
+site:.ru inurl:wp-mail.php + "There doesn't seem to be any new mail."
+site:.ru inurl:wp-mail.php + “There doesn’t seem to be any new mail.”
+site:.ru inurl:wp/wp-login.php
+site:.ru site:*/wordpress/wordpress.bak/
+site:.ru site:*/wp-admin/install.php intitle:WordPress Installation
+site:.ru site:*/wp-admin/maint/repair.php intext:"define(WP_ALLOW_REPAIR,true);"
+site:.ru site:*/wp-admin/user-edit.php
+site:.ru site:*/wp-contents/ inurl:/wp-contents/
+site:.ru site:*/wp-includes/ inurl:/wp-includes/
+site:.ru site:*/wp-includes/Requests/php_errorlog
+site:.ru site:*/wp-login?redirect_to= intitle:"login"
+site:.ru site:*/wp-settings.php
+site:.ru inurl:wp-content/ inurl:backups
+site:.ru Index:Index of /wp-content/uploads
+site:.ru intitle:"index of" inurl:/wp-content/
+site:.ru intitle:”index of” inurl:/wp-includes/
+site:.ru intitle:”index of” inurl:/wp-content/uploads/
+site:.ru intitle:”index of” inurl:/wp-content/languages/plugins
+site:.ru intitle:”index of” inurl:/wp-content/languages/themes
+site:.ru intitle:”index of” inurl:/wp-content/plugins/
+site:.ru intitle:”index of” inurl:/wp-content/themes/
+site:.ru inurl:”/wp-content/uploads/db-backup”
+site:.ru inurl:/wp-content/debug.log
+site:.ru inurl:/wp-config-sample.php
+site:.ru inurl:/wp-admin/maint/repair.php
+site:.ru intitle:”index of” inurl:/wp-admin/*.php
+site:.ru intitle:”index of” inurl:/wp-includes/*.php
+site:.ru intitle:”index of” inurl:/wp-content*.log
+site:.ru intitle:”index of” inurl:/wp-admin*.log
+site:.ru intitle:”index of” inurl:/wp-content*.txt
+site:.ru intitle:”index of” inurl:/wp-content*.sql
+site:.ru inurl:/wp-json/wp/v2/users/2
+site:.ru filetype:ini “wordfence”
+site:.ru inurl:/wp-content/plugins/revslider/
+intitle:"WordPress"  .ru
+inurl:category  .ru
+inurl:tag  .ru
+inurl:author  .ru
+inurl:feed  .ru
+inurl:comments  .ru
+inurl:page  .ru
+inurl:archive  .ru
+inurl:wp-content/uploads  .ru
+inurl:wp-content/themes  .ru
+inurl:wp-content/plugins  .ru
+inurl:wp-login.php  .ru
+inurl:wp-settings.php  .ru
+inurl:wp-config.php  .ru
+inurl:xmlrpc.php  .ru
+inurl:wp-content/themes/  .ru
+inurl:wp-content/plugins/  .ru
+inurl:wp-content/uploads/  .ru
+inurl:wp-json/wp/v2/  .ru
+inurl:wp-admin/admin-ajax.php  .ru
+inurl:wp-trackback.php  .ru
+inurl:wp-comments-post.php  .ru
+inurl:wp-login.php?action=register  .ru
+inurl:wp-signup.php  .ru
+inurl:wp-activate.php  .ru
+inurl:wp-cron.php  .ru
+inurl:wp-content/cache/  .ru
+inurl:wp-content/plugins/akismet  .ru
+inurl:wp-content/plugins/contact-form-7  .ru
+inurl:wp-content/plugins/yoast  .ru
+inurl:wp-content/themes/twentytwentyone  .ru
+inurl:wp-content/themes/twentytwenty  .ru
+inurl:wp-content/themes/twentynineteen  .ru
+inurl:wp-content/themes/hello-elementor  .ru
+inurl:wp-content/themes/avada  .ru
+inurl:wp-content/plugins/jetpack  .ru
+inurl:wp-content/plugins/woocommerce  .ru
+inurl:wp-content/plugins/elementor  .ru
+inurl:wp-content/plugins/wpforms  .ru
+inurl:wp-content/plugins/revslider  .ru
+inurl:wp-content/plugins/wordpress-seo  .ru
+inurl:wp-content/plugins/wp-super-cache  .ru
+inurl:wp-content/plugins/wordfence  .ru
+inurl:wp-content/plugins/nextgen-gallery  .ru
+inurl:wp-content/plugins/akismet  .ru
+inurl:wp-content/themes/bridge  .ru
+inurl:wp-content/themes/enfold  .ru
+inurl:wp-content/themes/avada  .ru
+inurl:wp-content/themes/soledad  .ru
+inurl:wp-content/themes/porto  .ru
+inurl:wp-content/themes/kalium  .ru
+inurl:wp-content/themes/uncode  .ru
+inurl:wp-content/themes/total  .ru
+inurl:wp-content/themes/woodmart  .ru
+inurl:wp-content/themes/consulting  .ru
+inurl:wp-content/themes/flatsome  .ru
+inurl:wp-content/themes/jevelin  .ru
+inurl:wp-content/themes/total  .ru
+inurl:wp-content/themes/onepage  .ru
+inurl:wp-content/themes/consulting  .ru
+inurl:wp-content/themes/porto  .ru
+inurl:wp-content/themes/kalium  .ru
+inurl:wp-content/themes/soledad  .ru
+inurl:wp-content/themes/woodmart  .ru
+inurl:wp-content/themes/avada  .ru
+inurl:wp-content/themes/bridge  .ru
+inurl:wp-content/themes/elementor  .ru
+inurl:wp-content/themes/wordpress  .ru
+inurl:wp-content/themes/creative  .ru
+inurl:wp-content/themes/photography  .ru
+inurl:wp-content/themes/blog  .ru
+inurl:wp-content/themes/portfolio  .ru
+inurl:wp-content/themes/magazine  .ru
+inurl:wp-content/themes/news  .ru
+inurl:wp-content/themes/ecommerce  .ru
+inurl:wp-content/themes/education  .ru
+inurl:wp-content/themes/health  .ru
+inurl:wp-content/themes/restaurant  .ru
+inurl:wp-content/themes/real-estate  .ru
+inurl:wp-content/themes/landing-page  .ru
+inurl:wp-content/themes/agency  .ru
+inurl:wp-content/themes/consulting  .ru
+inurl:wp-content/themes/fitness  .ru
+inurl:wp-content/themes/charity  .ru
+inurl:wp-content/themes/portfolio  .ru
+inurl:wp-content/themes/creative-agency  .ru
+inurl:wp-content/themes/photography  .ru
+inurl:wp-content/themes/blogging  .ru
+inurl:wp-content/themes/multipurpose  .ru
+inurl:wp-content/themes/single-page  .ru
+inurl:wp-content/themes/modern  .ru
+inurl:wp-content/themes/flat  .ru
+inurl:wp-content/themes/clean  .ru
+inurl:wp-content/themes/minimal  .ru
+inurl:wp-content/themes/creative-portfolio  .ru
+inurl:wp-content/themes/landing  .ru
+inurl:wp-content/themes/one-page  .ru
+inurl:wp-content/themes/online-store  .ru
+inurl:wp-content/themes/creative-agency  .ru
+inurl:wp-content/themes/portfolio-site  .ru
+inurl:wp-content/themes/restaurant-theme  .ru
+inurl:wp-content/themes/medical  .ru
+inurl:wp-content/themes/consulting-firm  .ru
+inurl:wp-content/themes/education-theme  .ru
+inurl:wp-content/themes/charity-theme  .ru
+inurl:wp-content/themes/fitness-theme  .ru
+inurl:wp-content/themes/real-estate-theme  .ru
+inurl:wp-content/themes/blog-theme  .ru
+inurl:wp-content/themes/news-site  .ru
+inurl:wp-content/themes/magazine-theme  .ru
+inurl:wp-content/themes/photography-theme  .ru
+inurl:wp-content/themes/ecommerce-theme  .ru
+inurl:wp-content/themes/modern-business  .ru
+inurl:wp-content/themes/clean-business  .ru
+inurl:wp-content/themes/minimalist  .ru
+inurl:wp-content/themes/creative-blog  .ru
+inurl:wp-content/themes/portfolio-template  .ru
+inurl:wp-content/themes/agency-template  .ru
+inurl:wp-content/themes/restaurant-template  .ru
+inurl:wp-content/themes/healthcare  .ru
+inurl:wp-content/themes/financial  .ru
+inurl:wp-content/themes/consulting-template  .ru
+inurl:wp-content/themes/education-template  .ru
+inurl:wp-content/themes/charity-template  .ru
+inurl:wp-content/themes/fitness-template  .ru
+inurl:wp-content/themes/real-estate-template  .ru
+inurl:wp-content/themes/blogging-template  .ru
+inurl:wp-content/themes/news-template  .ru
+inurl:wp-content/themes/magazine-template  .ru
+inurl:wp-content/themes/photography-template  .ru
+inurl:wp-content/themes/ecommerce-template  .ru
+inurl:wp-content/themes/modern-template  .ru
+inurl:wp-content/themes/clean-template  .ru
+inurl:wp-content/themes/minimal-template  .ru
+inurl:wp-content/themes/landing-page-template  .ru
+"is proudly powered by WordPress" .ru
+"plugins/wp-db-backup/wp-db-backup.php" .ru
+filetype:sql inurl:wp-content/backup-* .ru
+filetype:sql inurl:wp-content/* .ru
+filetype:txt inurl:wp-config.txt .ru
+intext:"the WordPress" inurl:wp-config ext:txt .ru
+intitle:"Index of" wp-admin .ru
+intitle:"Index of" wp-config .ru
+intitle:"Index of" wp-config.php .ru
+intitle:"Index of" wp-content .ru
+intitle:"Index of" wp-upload .ru
+inurl:"/wp-admin/setup-config.php" intitle:"Setup Configuration File" .ru
+inurl:"/wp-content/plugins/wp-mobile-detector/" ext:php .ru
+inurl:"/wp-content/plugins/wp-shopping-cart/" .ru
+inurl:"/wp-content/uploads/db-backup" .ru
+inurl:"/wp-content/uploads/levoslideshow/" .ru
+inurl:"/wp-content/wpclone-temp/wpclone_backup/" .ru
+inurl:"/wp-json/" -wordpress .ru
+inurl:"/wp-login.php?action=lostpassword" .ru
+inurl:"wp-content/uploads/file-manager/log.txt" .ru
+inurl:"wp-content/uploads/private" .ru
+inurl:"wp-contentpluginsall-in-one-seo-pack" .ru
+inurl:"wp-download.php?dl_id=" .ru
+inurl:"wp-license.php?file=../..//wp-config" .ru
+inurl:"wp-security-audit-log" ext:log .ru
+inurl:/wp-admin/admin-ajax.php?action=revslider_ajax_action .ru
+inurl:/wp-admin/admin.php intitle:"Log In" .ru
+inurl:/wp-admin/includes/plugin-install.php .ru
+inurl:/wp-admin/post.php?post= .ru
+inurl:/wp-content/ai1wm-backups + wpress .ru
+inurl:/wp-content/plugins/fgallery/ .ru
+inurl:/wp-content/plugins/inboundio-marketing/ .ru
+inurl:/wp-content/plugins/seo-pressor/classes/ .ru
+inurl:/wp-content/plugins/video-synchro-pdf .ru
+inurl:/wp-content/plugins/wpSS/ .ru
+inurl:/wp-content/themes/tigin/ .ru
+inurl:/wp-content/themes/xunjin/ .ru
+inurl:/wp-content/uploads/ filetype:sql .ru
+inurl:/wp-content/uploads/ninja-forms/ intitle:"index of" .ru
+inurl:/wp-content/uploads/wp-backup-plus/ .ru
+inurl:/wp-content/w3tc/dbcache/ .ru
+inurl:/wp-content/wpbackitup_backups .ru
+inurl:/wp-includes/certificates/ .ru
+inurl:/wp-json/wp/v2/users/ "id":1,"name":" -wordpress.stackexchange.com -stackoverflow.com .ru
+inurl:/wp/ + "Login" .ru
+inurl:/wp/wp-admin/ .ru
+inurl:log -intext:log ext:log inurl:wp- .ru
+inurl:wp-admin/ intext:css/ .ru
+inurl:wp-admin/admin-ajax.php inurl:wp-config.php .ru
+inurl:wp-config -intext:wp-config "'DB_PASSWORD'" .ru
+inurl:wp-config-backup.txt .ru
+inurl:wp-config.bak .ru
+inurl:wp-config.php intext:DB_PASSWORD -stackoverflow -wpbeginner .ru
+inurl:wp-content intext:backup-db .ru
+inurl:wp-content/debug.log .ru
+inurl:wp-content/plugins/age-verification/age-verification.php .ru
+inurl:wp-content/uploads filetype:xls | filetype:xlsx password .ru
+inurl:wp-content/uploads/dump.sql .ru
+inurl:wp-links-opml.php .ru
+inurl:wp-login.php +Register Username Password "remember me" -echo -trac -footwear .ru
+inurl:wp-login.php Register Username Password -echo .ru
+inurl:wp-login.php?action=register .ru
+inurl:wp-mail.php  + "There doesn't seem to be any new mail." .ru
+inurl:wp-mail.php + "There doesn't seem to be any new mail." .ru
+inurl:wp-mail.php + “There doesn’t seem to be any new mail.” .ru
+inurl:wp/wp-login.php
+site:*/wordpress/wordpress.bak/
+site:*/wp-admin/install.php intitle:WordPress Installation
+site:*/wp-admin/maint/repair.php intext:"define(WP_ALLOW_REPAIR,true);"
+site:*/wp-admin/user-edit.php
+site:*/wp-contents/ inurl:/wp-contents/
+site:*/wp-includes/ inurl:/wp-includes/
+site:*/wp-includes/Requests/php_errorlog
+site:*/wp-login?redirect_to= intitle:"login"
+site:*/wp-settings.php
+inurl:wp-content/ inurl:backups .ru
+Index:Index of /wp-content/uploads .ru
+intitle:"index of" inurl:/wp-content/ .ru
+intitle:”index of” inurl:/wp-includes/ .ru
+intitle:”index of” inurl:/wp-content/uploads/ .ru
+intitle:”index of” inurl:/wp-content/languages/plugins .ru
+intitle:”index of” inurl:/wp-content/languages/themes .ru
+intitle:”index of” inurl:/wp-content/plugins/ .ru
+intitle:”index of” inurl:/wp-content/themes/ .ru
+inurl:”/wp-content/uploads/db-backup” .ru
+inurl:/wp-content/debug.log .ru
+inurl:/wp-config-sample.php .ru
+inurl:/wp-admin/maint/repair.php .ru
+intitle:”index of” inurl:/wp-admin/*.php .ru
+intitle:”index of” inurl:/wp-includes/*.php .ru
+intitle:”index of” inurl:/wp-content*.log .ru
+intitle:”index of” inurl:/wp-admin*.log .ru
+intitle:”index of” inurl:/wp-content*.txt .ru
+intitle:”index of” inurl:/wp-content*.sql .ru
+inurl:/wp-json/wp/v2/users/2 .ru
+filetype:ini “wordfence” .ru
+inurl:/wp-content/plugins/revslider/ .ru
+site:.ru intext:powered by JoomSport - sport WordPress plugin
+intext:powered by JoomSport - sport WordPress plugin .ru
+site: .ru inurl:wp-content/plugins/social-warfare
+inurl:wp-content/plugins/social-warfare .ru
+site: .ru inurl:wp-content/plugins/contact-form-7
+inurl:wp-content/plugins/contact-form-7 .ru
+site:.ru inurl:wp-content/plugins/wordpress-seo
+inurl:wp-content/plugins/wordpress-seo .ru
+intitle: "Index of" wp-admin .ru
+site:.ru intitle: "Index of" wp-admin
+"is proudly powered by WordPress" .ru
+site:.ru "is proudly powered by WordPress"
+inurl:/wp-content/plugins/akismet/ .ru
+site:.ru inurl:/wp-content/plugins/akismet/
+site:.ru inurl:wp-content/themes/cubico
+inurl:wp-content/themes/cubico .ru
+site:.ru inurl:wp-content/themes/cottage
+inurl:wp-content/themes/cottage .ru
+site:.ru inurl:wp-content/themes/bark
+inurl:wp-content/themes/bark .ru
+site:.ru inurl:wp-content/themes/adonay
+inurl:wp-content/themes/adonay .ru
+site:.ru inurl:wp-content/themes/the-shore
+site:.ru inurl:wp-content/themes/margarethe
+site:.ru inurl:wp-content/themes/goodskin
+site:.ru inurl:wp-content/themes/sprinkler
+site:.ru inurl:wp-content/themes/recipeBook
+site:.ru inurl:wp-content/themes/hola
+site:.ru inurl:wp-content/themes/fictionary
+site:.ru inurl:wp-content/themes/musee
+site:.ru inurl:wp-content/themes/margarethe
+site:.ru inurl:wp-content/themes/massimo
+site:.ru inurl:wp-content/themes/brute
+site:.ru inurl:wp-content/themes/happening
+site:.ru inurl:wp-content/themes/sprinkler
+site:.ru inurl:wp-content/themes/promoter
+site:.ru inurl:wp-content/themes/retrato
+site:.ru inurl:wp-content/themes/matrioska
+inurl:wp-content/themes/the-shore .ru
+inurl:wp-content/themes/margarethe .ru
+inurl:wp-content/themes/goodskin .ru
+inurl:wp-content/themes/sprinkler .ru
+inurl:wp-content/themes/recipeBook .ru
+inurl:wp-content/themes/hola .ru
+inurl:wp-content/themes/fictionary .ru
+inurl:wp-content/themes/musee .ru
+inurl:wp-content/themes/margarethe .ru
+inurl:wp-content/themes/massimo .ru
+inurl:wp-content/themes/brute .ru
+inurl:wp-content/themes/happening .ru
+inurl:wp-content/themes/sprinkler .ru
+inurl:wp-content/themes/promoter .ru
+inurl:wp-content/themes/retrato .ru
+inurl:wp-content/themes/matrioska .ru
