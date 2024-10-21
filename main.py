@@ -11,7 +11,7 @@ from search_engine_parser.core.exceptions import NoResultsOrTrafficError
 
 
 #link_pattern = re.compile(r'uddg=(.*\.ru)')
-link_pattern = re.compile(r'(\w*://[\w.]*.ru)')
+link_pattern = re.compile(r'(\w*://[\w.-]*.ru)')
 
 
 def get_url(search_results):
@@ -24,7 +24,8 @@ def get_url(search_results):
             pattern = link_pattern.search(url)
             if pattern:
                 url = pattern.group(1)
-
+            else:
+                continue
             #url = f'https://{url.replace("https//", "").replace("http://", "").split("/")[0]}'
 
             yield url
@@ -55,7 +56,7 @@ def collect():
         try:
             search_results = duckduckgosearch.search(dork)
         except NoResultsOrTrafficError:
-            sleep(150)
+            sleep(100)
             print(f'No results_3 for {dork}')
             print(f'count: {num} / {len(dorks)}')
             continue
@@ -66,10 +67,10 @@ def collect():
         for url in get_url(search_results):
             urls_set.add(url)
 
-        with open('results_3', 'w') as file:
+        with open('results1', 'w') as file:
             file.write('\n'.join(urls_set))
         print(f'count: {num} / {len(dorks)}')
-        sleep(150)
+        sleep(30)
 
 
 if __name__ == "__main__":
