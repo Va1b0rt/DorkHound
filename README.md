@@ -6,12 +6,12 @@ DorkHound is a Python script designed to automate the process of searching for s
 Installation
 
 Clone the repository:
-`Bash 
-git clone https://github.com/Va1b0rt/DorkHound`
+
+`git clone https://github.com/Va1b0rt/DorkHound`
 
 Install dependencies: Install required Python libraries (e.g., requests, BeautifulSoup4) using:
-`Bash
-pip install -r requirements.txt`
+
+`pip install -r requirements.txt`
 
 Usage
 
