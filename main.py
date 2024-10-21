@@ -41,7 +41,7 @@ def collect():
     duckduckgosearch = DuckDuckGoSearch()
     #yandex_search = YandexSearch()
 
-    with open('wordpress_dorks.txt', 'r') as file:
+    with open('dorks.txt', 'r') as file:
         dorks = file.read().splitlines()
 
     urls_set = set([])
@@ -67,7 +67,7 @@ def collect():
         for url in get_url(search_results):
             urls_set.add(url)
 
-        with open('results1', 'w') as file:
+        with open('results', 'w') as file:
             file.write('\n'.join(urls_set))
         print(f'count: {num} / {len(dorks)}')
         sleep(30)
