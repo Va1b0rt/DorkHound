@@ -1,60 +1,47 @@
-import re
-from time import sleep
+import argparse
+import os
+import sys
 
-from search_engine_parser.core.engines.duckduckgo import Search as DuckDuckGoSearch
-from search_engine_parser.core.exceptions import NoResultsOrTrafficError
-
-
-link_pattern = re.compile(r'(\w*://[\w.-]*.ru)')
+from hound import DorkHound
 
 
-def get_url(search_results):
-    print(f'Searching Count: {len(search_results)}')
-    for result in search_results:
-        print(result["links"])
-        try:
-            url = result["links"]
-            url = url.replace("%3A", ":").replace("%2F", "/").replace("%2D", "-")
-            pattern = link_pattern.search(url)
-            if pattern:
-                url = pattern.group(1)
-            else:
-                continue
-            #url = f'https://{url.replace("https//", "").replace("http://", "").split("/")[0]}'
-
-            yield url
-
-        except Exception as e:
-            print(f"Error: {e}")
-
-
-def collect():
-    duckduckgosearch = DuckDuckGoSearch()
-
-    with open('dorks.txt', 'r') as file:
-        dorks = file.read().splitlines()
-
-    urls_set = set([])
-
-    for num, dork in enumerate(dorks, start=1):
-        print(f'{dork=}')
-
-        try:
-            search_results = duckduckgosearch.search(dork)
-        except NoResultsOrTrafficError:
-            sleep(100)
-            print(f'No results_3 for {dork}')
-            print(f'count: {num} / {len(dorks)}')
-            continue
-
-        for url in get_url(search_results):
-            urls_set.add(url)
-
-        with open('results', 'w') as file:
-            file.write('\n'.join(urls_set))
-        print(f'count: {num} / {len(dorks)}')
-        sleep(30)
-
+def parse_args():
+    parser = argparse.ArgumentParser(description='Dork Hound.')
+    parser.add_argument("-d", "--dorks", help="path to dork file")
+    parser.add_argument("-e", "--exclude", help="path to exclude domains file")
+    parser.add_argument( "-t", "--delay", help="delay in seconds")
+    parser.add_argument("-o", "--output", help="path to output file")
+    parser.add_argument("-c", "--clear", help="clear database", action="store_true")
+    parser.parse_args()
+    return parser.parse_args()
 
 if __name__ == "__main__":
-    collect()
+    args = parse_args()
+
+    if args.clear:
+        os.remove("dorks.db")
+        sys.exit(0)
+
+    hound = DorkHound()
+
+    if args.output and not args.dorks:
+        hound.save_domains_to_file(args.output)
+        sys.exit(0)
+
+    if not args.dorks:
+        print("specify the path to the file with dorks")
+        sys.exit(1)
+
+    hound.dorks_file_path = args.dorks
+
+    if args.exclude:
+        hound.exclude_domains_file_path = args.exclude
+
+    if args.delay:
+        hound.delay = int(args.delay)
+
+    hound.collect()
+
+    if args.output:
+        hound.save_domains_to_file(args.output)
+        sys.exit(0)

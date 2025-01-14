@@ -1,4 +1,1 @@
-site:.ru inurl:"/?rest_route=/bricks/v1/render_element"
-site:.ru inurl:"/wp-json/bricks/v1/render_element"
-inurl:"/?rest_route=/bricks/v1/render_element" .ru
-inurl:"/wp-json/bricks/v1/render_element" .ru
+qwerty
