@@ -56,7 +56,6 @@ class DorkHound:
     def get_url(self, search_results):
         print(f'Searching Count: {len(search_results)}')
         for result in search_results:
-            print(result["links"])
             try:
                 url = result["links"]
                 url = url.replace("%3A", ":").replace("%2F", "/").replace("%2D", "-")
