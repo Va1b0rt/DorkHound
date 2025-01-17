@@ -80,14 +80,17 @@ class DorkHound:
 
             try:
                 search_results = search_engine.search(dork)
+                for url in self.get_url(search_results):
+                    self.database.add_entry(url, dork)
             except NoResultsOrTrafficError:
                 sleep(100)
                 print(f'No results_3 for {dork}')
                 print(f'count: {num} / {dorks_count}')
                 continue
-
-            for url in self.get_url(search_results):
-                self.database.add_entry(url, dork)
+            except Exception as e:
+                print(f'Error: {e}')
+                sleep(150)
+                continue
 
             print(f'count: {num} / {dorks_count}')
             sleep(self.delay)
