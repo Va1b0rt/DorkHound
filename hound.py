@@ -104,13 +104,13 @@ class DorkHound:
                         self.database.add_entry(url, dork)
 
             except NoResultsOrTrafficError:
-                sleep(100)
+                sleep(self.delay)
                 print(f'No results_3 for {dork}')
                 print(f'count: {num} / {dorks_count}')
                 continue
             except Exception as e:
                 print(f'Error: {e}')
-                sleep(150)
+                sleep(self.delay)
                 continue
 
             print(f'count: {num} / {dorks_count}')
