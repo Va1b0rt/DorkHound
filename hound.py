@@ -1,4 +1,5 @@
 import re
+from random import choice
 from time import sleep
 from typing import Any, Generator
 
@@ -15,6 +16,11 @@ class DorkHound:
         self.dorks_file_path = None
         self.exclude_domains_file_path = None
         self.delay = delay
+        self.proxies_file_path = None
+        self.proxies = []
+
+        if self.proxies_file_path:
+            self.read_proxys_from_file()
 
         self.database = DorkDatabase()
 
@@ -43,6 +49,15 @@ class DorkHound:
                 if not line.strip():
                     continue
                 yield line.strip()
+
+    @property
+    def proxy(self) -> str:
+        return choice(self.proxies)
+
+    def read_proxys_from_file(self):
+        with open(self.proxies_file_path, 'r') as f:
+            for line in f:
+                self.proxies.append(line.strip())
 
     def save_domains_to_file(self, file_path: str):
         domains = self.database.get_all_entries()
@@ -81,8 +96,7 @@ class DorkHound:
             try:
 
                 for page in range(1, 999):
-                    sleep(100)
-                    search_results = search_engine.search(dork, page=page)
+                    search_results = search_engine.search(dork, page=page, proxy=self.proxy if self.proxies else None)
                     if not search_results.results:
                         break
 

@@ -12,6 +12,7 @@ def parse_args():
     parser.add_argument( "-t", "--delay", help="delay in seconds")
     parser.add_argument("-o", "--output", help="path to output file")
     parser.add_argument("-c", "--clear", help="clear database", action="store_true")
+    parser.add_argument("-p", "--proxys", help="path to proxy file")
     parser.parse_args()
     return parser.parse_args()
 
@@ -39,6 +40,9 @@ if __name__ == "__main__":
 
     if args.delay:
         hound.delay = int(args.delay)
+
+    if args.proxys:
+        hound.proxy_path = args.proxys
 
     hound.collect()
 
