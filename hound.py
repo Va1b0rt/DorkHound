@@ -79,9 +79,16 @@ class DorkHound:
             print(f'{dork=}')
 
             try:
-                search_results = search_engine.search(dork)
-                for url in self.get_url(search_results):
-                    self.database.add_entry(url, dork)
+
+                for page in range(1, 999):
+                    sleep(100)
+                    search_results = search_engine.search(dork, page=page)
+                    if not search_results.results:
+                        break
+
+                    for url in self.get_url(search_results):
+                        self.database.add_entry(url, dork)
+
             except NoResultsOrTrafficError:
                 sleep(100)
                 print(f'No results_3 for {dork}')
