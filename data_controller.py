@@ -61,6 +61,13 @@ class DorkDatabase:
         finally:
             session.close()
 
+    def get_entry_by_dork(self, dork: str) -> Type[DorkEntry] | None:
+        session = self.Session()
+        try:
+            return session.query(DorkEntry).filter_by(dork=dork).first()
+        finally:
+            session.close()
+
     def get_all_entries(self) -> list[Type[DorkEntry]]:
         """Получает все записи"""
         session = self.Session()

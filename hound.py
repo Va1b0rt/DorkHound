@@ -91,6 +91,8 @@ class DorkHound:
 
         for num, dork in tqdm(enumerate(self.dorks, start=1)):
             tqdm.write(f'{dork=}')
+            if self.database.get_entry_by_dork(dork):
+                continue
 
             self.collect_pages(dork)
 
