@@ -68,7 +68,7 @@ class DorkHound:
             raise
 
     def get_url(self, search_results):
-        print(f'Searching Count: {len(search_results)}')
+        #print(f'Searching Count: {len(search_results)}')
         for result in search_results:
             try:
                 url = result["links"]
@@ -83,7 +83,8 @@ class DorkHound:
                 yield url
 
             except Exception as e:
-                print(f"Error: {e}")
+                pass
+                #print(f"Error: {e}")
 
     def collect(self):
         dorks_count = self.dorks_count
