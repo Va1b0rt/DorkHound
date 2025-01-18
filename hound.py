@@ -87,31 +87,34 @@ class DorkHound:
                 print(f"Error: {e}")
 
     def collect(self):
-        search_engine = DuckDuckGoSearch()
         dorks_count = self.dorks_count
 
         for num, dork in enumerate(self.dorks, start=1):
             print(f'{dork=}')
 
-            try:
-
-                for page in range(1, 999):
-                    search_results = search_engine.search(dork, page=page, proxy=self.proxy if self.proxies else None)
-                    if not search_results.results:
-                        break
-
-                    for url in self.get_url(search_results):
-                        self.database.add_entry(url, dork)
-
-            except NoResultsOrTrafficError:
-                sleep(self.delay)
-                print(f'No results_3 for {dork}')
-                print(f'count: {num} / {dorks_count}')
-                continue
-            except Exception as e:
-                print(f'Error: {e}')
-                sleep(self.delay)
-                continue
+            self.collect_pages(dork)
 
             print(f'count: {num} / {dorks_count}')
             sleep(self.delay)
+
+    def collect_pages(self, dork):
+        search_engine = DuckDuckGoSearch()
+
+        try:
+            for page in range(1, 999):
+                proxy = self.proxy if self.proxies else None
+                search_results = search_engine.search(dork, page=page, proxy=proxy)
+                if not search_results.results:
+                    break
+
+                for url in self.get_url(search_results):
+                    self.database.add_entry(url, dork)
+
+        except NoResultsOrTrafficError:
+            sleep(self.delay)
+            print(f'No results_3 for {dork}')
+            return
+        except Exception as e:
+            print(f'Error: {e}')
+            sleep(self.delay)
+            self.collect_pages(dork)
