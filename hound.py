@@ -120,11 +120,13 @@ class DorkHound:
                 break
             except NoResultsOrTrafficError as e:
                 #print(e)
-                sleep(5)
+                sleep(1)
                 _ex_count += 1
                 self.collect_pages(dork, page, _ex_count)
+                break
             except Exception as e:
                 #tqdm.write(f'Error: {e}')
                 sleep(self.delay)
                 _ex_count += 1
                 self.collect_pages(dork, page, _ex_count)
+                break
