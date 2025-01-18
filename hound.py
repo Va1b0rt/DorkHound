@@ -103,27 +103,27 @@ class DorkHound:
         if _ex_count >= 5:
             return
 
-        for page in tqdm(range(start_page, 999)):
+        for page in range(start_page, 999):
             try:
                 proxy = self.proxy if self.proxies else None
                 search_results = search_engine.search(dork, page=page, proxy=proxy)
                 if not search_results.results:
                     break
 
-                for url in tqdm(self.get_url(search_results)):
-                    tqdm.write(f'{url=}')
+                for url in self.get_url(search_results):
+                    #tqdm.write(f'{url=}')
                     self.database.add_entry(url, dork)
 
             except NoResultsFound:
-                tqdm.write(f'NoResultsFound for {dork}')
+                #tqdm.write(f'NoResultsFound for {dork}')
                 break
             except NoResultsOrTrafficError as e:
-                print(e)
+                #print(e)
                 sleep(5)
                 _ex_count += 1
                 self.collect_pages(dork, page, _ex_count)
             except Exception as e:
-                tqdm.write(f'Error: {e}')
+                #tqdm.write(f'Error: {e}')
                 sleep(self.delay)
                 _ex_count += 1
                 self.collect_pages(dork, page, _ex_count)
