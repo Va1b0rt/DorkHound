@@ -42,7 +42,8 @@ if __name__ == "__main__":
         hound.delay = int(args.delay)
 
     if args.proxys:
-        hound.proxy_path = args.proxys
+        hound.proxies_file_path = args.proxys
+        hound.read_proxys_from_file()
 
     hound.collect()
 

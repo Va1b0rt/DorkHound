@@ -4,7 +4,8 @@ from time import sleep
 from typing import Any, Generator
 
 from search_engine_parser.core.engines.duckduckgo import Search as DuckDuckGoSearch
-from search_engine_parser.core.exceptions import NoResultsOrTrafficError
+from search_engine_parser.core.exceptions import NoResultsOrTrafficError, NoResultsFound
+from tqdm import tqdm
 
 from data_controller import DorkDatabase
 
@@ -19,8 +20,6 @@ class DorkHound:
         self.proxies_file_path = None
         self.proxies = []
 
-        if self.proxies_file_path:
-            self.read_proxys_from_file()
 
         self.database = DorkDatabase()
 
@@ -89,32 +88,42 @@ class DorkHound:
     def collect(self):
         dorks_count = self.dorks_count
 
-        for num, dork in enumerate(self.dorks, start=1):
-            print(f'{dork=}')
+        for num, dork in tqdm(enumerate(self.dorks, start=1)):
+            tqdm.write(f'{dork=}')
 
             self.collect_pages(dork)
 
-            print(f'count: {num} / {dorks_count}')
+            tqdm.write(f'count: {num} / {dorks_count}')
             sleep(self.delay)
 
-    def collect_pages(self, dork):
+    def collect_pages(self, dork, start_page=1, ex_count=0):
         search_engine = DuckDuckGoSearch()
+        _ex_count = ex_count
 
-        try:
-            for page in range(1, 999):
+        if _ex_count >= 5:
+            return
+
+        for page in tqdm(range(start_page, 999)):
+            try:
                 proxy = self.proxy if self.proxies else None
                 search_results = search_engine.search(dork, page=page, proxy=proxy)
                 if not search_results.results:
                     break
 
-                for url in self.get_url(search_results):
+                for url in tqdm(self.get_url(search_results)):
+                    tqdm.write(f'{url=}')
                     self.database.add_entry(url, dork)
 
-        except NoResultsOrTrafficError:
-            sleep(self.delay)
-            print(f'No results_3 for {dork}')
-            return
-        except Exception as e:
-            print(f'Error: {e}')
-            sleep(self.delay)
-            self.collect_pages(dork)
+            except NoResultsFound:
+                tqdm.write(f'NoResultsFound for {dork}')
+                break
+            except NoResultsOrTrafficError as e:
+                print(e)
+                sleep(5)
+                _ex_count += 1
+                self.collect_pages(dork, page, _ex_count)
+            except Exception as e:
+                tqdm.write(f'Error: {e}')
+                sleep(self.delay)
+                _ex_count += 1
+                self.collect_pages(dork, page, _ex_count)
