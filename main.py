@@ -2,6 +2,8 @@ import argparse
 import os
 import sys
 
+from search_engine_parser.core.engines.duckduckgo import Search as DuckDuckGoSearch
+
 from hound import DorkHound
 
 

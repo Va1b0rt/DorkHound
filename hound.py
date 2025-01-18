@@ -88,15 +88,15 @@ class DorkHound:
 
     def collect(self):
         dorks_count = self.dorks_count
+        progress = tqdm(enumerate(self.dorks, start=1))
 
-        for num, dork in tqdm(enumerate(self.dorks, start=1)):
-            tqdm.write(f'{dork=}')
+        for num, dork in progress:
+            progress.set_description(desc=f"Processing {num} / {dorks_count}")
+            progress.write(f'{dork=}')
             if self.database.get_entry_by_dork(dork):
                 continue
 
             self.collect_pages(dork)
-
-            tqdm.write(f'count: {num} / {dorks_count}')
             sleep(self.delay)
 
     def collect_pages(self, dork, start_page=1, ex_count=0):
