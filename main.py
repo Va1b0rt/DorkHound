@@ -16,6 +16,7 @@ def parse_args():
     parser.add_argument("-c", "--clear", help="clear database", action="store_true")
     parser.add_argument("-p", "--proxys", help="path to proxy file")
     parser.add_argument("-v", "--verbose", help="enable detailed output", action="store_true")
+    parser.add_argument("-w", "--workers", help="кількість потоків", default=20, type=int)
     parser.parse_args()
     return parser.parse_args()
 
@@ -51,7 +52,7 @@ if __name__ == "__main__":
         hound.read_proxys_from_file()
 
     try:
-        hound.collect()
+        hound.collect(max_workers=args.workers)
     except KeyboardInterrupt:
         print("\nРоботу DorkHound безпечно завершено.")
         sys.exit(0)

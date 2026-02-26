@@ -3,6 +3,7 @@ from random import choice
 from time import sleep
 from typing import Any, Generator
 from itertools import cycle
+import concurrent.futures
 
 from search_engine_parser.core.engines.duckduckgo import Search as DuckDuckGoSearch
 from search_engine_parser.core.exceptions import NoResultsOrTrafficError, NoResultsFound
@@ -113,25 +114,30 @@ class DorkHound:
                 if self.verbose:
                     print(f"[DEBUG] Помилка обробки: {e}")
 
-    def collect(self):
-        dorks_count = self.dorks_count
-        progress = tqdm(enumerate(self.dorks, start=1))
+    def collect(self, max_workers: int = 20):
+        # Зчитування всіх дорків у пам'ять для коректної роботи багатопоточності
+        dorks_list = list(self.dorks)
+        dorks_count = len(dorks_list)
+        progress = tqdm(total=dorks_count, desc="Processing")
+
+        def process_dork(dork):
+            try:
+                if not self.database.is_dork_processed(dork):
+                    if self.verbose:
+                        progress.write(f'dork={dork}')
+                    self.collect_pages(dork)
+                    self.database.add_processed_dork(dork)
+            finally:
+                progress.update(1)
 
         try:
-            for num, dork in progress:
-                progress.set_description(desc=f"Processing {num} / {dorks_count}")
-
-                if self.verbose:
-                    progress.write(f'{dork=}')
-
-                if self.database.is_dork_processed(dork):
-                    continue
-
-                self.collect_pages(dork)
-                self.database.add_processed_dork(dork)
-                sleep(self.delay)
+            with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+                futures = [executor.submit(process_dork, dork) for dork in dorks_list]
+                concurrent.futures.wait(futures)
         except KeyboardInterrupt:
-            progress.write("\nОбробка перервана користувачем. Прогрес збережено.")
+            progress.write("\nОбробка перервана користувачем. Зупинка пулу потоків...")
+        finally:
+            progress.close()
 
     def collect_pages(self, dork, start_page=1, ex_count=0):
         search_engine = CustomDDGSearch(verbose=self.verbose)
