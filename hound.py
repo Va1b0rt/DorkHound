@@ -2,6 +2,7 @@ import re
 from random import choice
 from time import sleep
 from typing import Any, Generator
+from itertools import cycle
 
 from search_engine_parser.core.engines.duckduckgo import Search as DuckDuckGoSearch
 from search_engine_parser.core.exceptions import NoResultsOrTrafficError, NoResultsFound
@@ -9,6 +10,7 @@ from tqdm import tqdm
 
 from data_controller import DorkDatabase
 from CustomSearchResult import CustomDDGSearch
+
 
 
 class DorkHound:
@@ -20,6 +22,12 @@ class DorkHound:
         self.delay = delay
         self.proxies_file_path = None
         self.proxies = []
+        self.verbose = False
+
+        self.proxies_file_path = None
+        self.proxies = []
+        self._proxy_pool = None
+        self.database = DorkDatabase()
         self.verbose = False
 
 
@@ -51,14 +59,23 @@ class DorkHound:
                     continue
                 yield line.strip()
 
-    @property
-    def proxy(self) -> str:
-        return choice(self.proxies)
-
     def read_proxys_from_file(self):
         with open(self.proxies_file_path, 'r') as f:
             for line in f:
-                self.proxies.append(line.strip())
+                proxy = line.strip()
+                if proxy:
+                    # Додаємо http:// якщо протокол не вказано, щоб requests міг працювати
+                    if not proxy.startswith('http'):
+                        proxy = f'http://{proxy}'
+                    self.proxies.append(proxy)
+        if self.proxies:
+            self._proxy_pool = cycle(self.proxies) # Створюємо циклічний ітератор
+
+    @property
+    def proxy(self) -> str:
+        if self._proxy_pool:
+            return next(self._proxy_pool)
+        return None
 
     def save_domains_to_file(self, file_path: str):
         domains = self.database.get_all_entries()
