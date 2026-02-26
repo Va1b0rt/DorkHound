@@ -15,6 +15,7 @@ def parse_args():
     parser.add_argument("-o", "--output", help="path to output file")
     parser.add_argument("-c", "--clear", help="clear database", action="store_true")
     parser.add_argument("-p", "--proxys", help="path to proxy file")
+    parser.add_argument("-v", "--verbose", help="enable detailed output", action="store_true")
     parser.parse_args()
     return parser.parse_args()
 
@@ -22,10 +23,12 @@ if __name__ == "__main__":
     args = parse_args()
 
     if args.clear:
-        os.remove("dorks.db")
+        if os.path.exists("dorks.db"):
+            os.remove("dorks.db")
         sys.exit(0)
 
     hound = DorkHound()
+    hound.verbose = args.verbose
 
     if args.output and not args.dorks:
         hound.save_domains_to_file(args.output)
@@ -47,7 +50,11 @@ if __name__ == "__main__":
         hound.proxies_file_path = args.proxys
         hound.read_proxys_from_file()
 
-    hound.collect()
+    try:
+        hound.collect()
+    except KeyboardInterrupt:
+        print("\nРоботу DorkHound безпечно завершено.")
+        sys.exit(0)
 
     if args.output:
         hound.save_domains_to_file(args.output)

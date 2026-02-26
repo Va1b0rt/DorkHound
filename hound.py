@@ -8,17 +8,19 @@ from search_engine_parser.core.exceptions import NoResultsOrTrafficError, NoResu
 from tqdm import tqdm
 
 from data_controller import DorkDatabase
+from CustomSearchResult import CustomDDGSearch
 
 
 class DorkHound:
     def __init__(self,
                  delay: int = 30):
-        self.link_pattern = re.compile(r'://([A-zА-я.\d]*)/')
+        self.link_pattern = re.compile(r'://([^/]+)')
         self.dorks_file_path = None
         self.exclude_domains_file_path = None
         self.delay = delay
         self.proxies_file_path = None
         self.proxies = []
+        self.verbose = False
 
 
         self.database = DorkDatabase()
@@ -68,67 +70,67 @@ class DorkHound:
             raise
 
     def get_url(self, search_results):
-        #print(f'Searching Count: {len(search_results)}')
+        if self.verbose:
+            print(f"\n[DEBUG] Отримано результатів від парсера: {len(search_results.results)}")
+
         for result in search_results:
             try:
-                url = result["links"]
+                url = result.get("links", "")
+                if self.verbose:
+                    print(f"[DEBUG] Сирий URL: {url}")
+
                 url = url.replace("%3A", ":").replace("%2F", "/").replace("%2D", "-")
                 pattern = self.link_pattern.search(url)
-                if pattern:
-                    url = pattern.group(1)
-                else:
-                    continue
-                # url = f'https://{url.replace("https//", "").replace("http://", "").split("/")[0]}'
 
-                yield url
+                if pattern:
+                    extracted_domain = pattern.group(1)
+                    if self.verbose:
+                        print(f"[DEBUG] Витягнуто домен: {extracted_domain}")
+                    yield extracted_domain
+                else:
+                    if self.verbose:
+                        print("[DEBUG] Регексп не знайшов збігів")
+                    continue
 
             except Exception as e:
-                pass
-                #print(f"Error: {e}")
+                if self.verbose:
+                    print(f"[DEBUG] Помилка обробки: {e}")
 
     def collect(self):
         dorks_count = self.dorks_count
         progress = tqdm(enumerate(self.dorks, start=1))
 
-        for num, dork in progress:
-            progress.set_description(desc=f"Processing {num} / {dorks_count}")
-            progress.write(f'{dork=}')
-            if self.database.get_entry_by_dork(dork):
-                continue
+        try:
+            for num, dork in progress:
+                progress.set_description(desc=f"Processing {num} / {dorks_count}")
 
-            self.collect_pages(dork)
-            sleep(self.delay)
+                if self.verbose:
+                    progress.write(f'{dork=}')
+
+                if self.database.is_dork_processed(dork):
+                    continue
+
+                self.collect_pages(dork)
+                self.database.add_processed_dork(dork)
+                sleep(self.delay)
+        except KeyboardInterrupt:
+            progress.write("\nОбробка перервана користувачем. Прогрес збережено.")
 
     def collect_pages(self, dork, start_page=1, ex_count=0):
-        search_engine = DuckDuckGoSearch()
+        search_engine = CustomDDGSearch(verbose=self.verbose)
         _ex_count = ex_count
 
         if _ex_count >= 5:
             return
 
         for page in range(start_page, 999):
-            try:
-                proxy = self.proxy if self.proxies else None
-                search_results = search_engine.search(dork, page=page, proxy=proxy)
-                if not search_results.results:
-                    break
+            proxy = self.proxy if self.proxies else None
+            search_results = search_engine.search(dork, page=page, proxy=proxy)
 
-                for url in self.get_url(search_results):
-                    #tqdm.write(f'{url=}')
-                    self.database.add_entry(url, dork)
+            if not search_results.results:
+                break
 
-            except NoResultsFound:
-                #tqdm.write(f'NoResultsFound for {dork}')
-                break
-            except NoResultsOrTrafficError as e:
-                #print(e)
-                sleep(1)
-                _ex_count += 1
-                self.collect_pages(dork, page, _ex_count)
-                break
-            except Exception as e:
-                #tqdm.write(f'Error: {e}')
-                sleep(self.delay)
-                _ex_count += 1
-                self.collect_pages(dork, page, _ex_count)
-                break
+            for url in self.get_url(search_results):
+                self.database.add_entry(url, dork)
+
+            sleep(self.delay)
