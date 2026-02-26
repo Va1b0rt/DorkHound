@@ -45,6 +45,10 @@ class CustomDDGSearch:
 
         try:
             response = requests.post(self.url, headers=headers, data=data, proxies=proxies, timeout=10)
+
+            with open("last_page.html", "w", encoding="utf-8") as f:
+                f.write(response.text)
+
             if response.status_code != 200:
                 return CustomSearchResult([])
         except Exception as e:
